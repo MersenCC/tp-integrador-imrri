@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Landing from './pages/Landing/Landing.jsx'
 import Details from './pages/Details/Details.jsx'
 import Menu from './pages/Menu/Menu.jsx'
-//import Reviews from './pages/Reviews/Reviews.jsx'
+import Reviews from './pages/Reviews/Reviews.jsx'
 import Register from './pages/Register/Register.jsx'
 import Login from './pages/Login/Login.jsx'
 import Carrito from './pages/Carrito/Carrito.jsx'
@@ -18,7 +18,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Landing/>}/>
         <Route path="/details" element={<Details/>}/>
         <Route path="/menu" element={<Menu/>}/>
-        {/* <Route path="reviews" element={<Reviews/>}/> */}
+        <Route path="reviews" element={<Reviews/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/carrito" element={<Carrito/>}/>

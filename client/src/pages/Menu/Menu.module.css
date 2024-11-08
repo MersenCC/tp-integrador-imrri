@@ -151,13 +151,16 @@ nav.menuinferior{
             border-radius: 15px;
             box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.603);
 
+            & h3{
+                color: rgb(17, 173, 121);
+            }
+
             & .imgPlato{
                 position: relative;
                 width: 30%;
                 height: 100%;
                 background-color: transparent;
-                background-image: url(../../assets/img/plato2.png);
-                background-size: contain;
+                background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
                 border-top-left-radius: 15px;
@@ -194,6 +197,11 @@ nav.menuinferior{
                 align-items: left;
                 border-top-right-radius: 15px;
                 border-bottom-right-radius: 15px;
+                overflow: scroll;
+            }
+
+            & .descPlato::-webkit-scrollbar{
+                display: none;
             }
         }
 

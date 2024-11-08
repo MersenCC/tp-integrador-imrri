@@ -1,15 +1,20 @@
 import { useState } from 'react'
 import styles from './Menu.module.css'
 
-/*const ObtenerDatos = async => {
-  try {
-    const data = await fetch(``);
-    const results = await data.json();
-    return results;
-  } catch (err) {
-    console.error(err);
+const ObtenerPlatos = async () => {
+    try {
+      const data = await fetch(`http://localhost:3001/platos`);
+      const results = await data.json();
+      return results;
+    } catch (err) {
+      console.error(err);
+    }
   }
-}*/
+
+const URL = window.location.href
+const PLATO_SELECT = parseInt(URL.slice(-1))
+
+const PLATOS = await ObtenerPlatos()
 
 function Menu() {
   return (
@@ -22,24 +27,30 @@ function Menu() {
         </header>
         <main className={styles.mainMenu}>
             <div className={styles.platoTituloMain}>
-                <p>MAIN DISHES</p>
+                <p>PLATOS PRINCIPALES</p>
             </div>
             <section className={styles.platos}>
-                <a href="">
-                    <article className={styles.plato}>
-                        <div className={styles.imgPlato}>
-                            <div className={styles.precioPlato}>$7.99</div>
-                        </div>
-                        <div className={styles.descPlato}>
-                            <h3>Ensalada Caesar</h3>
-                            <h4>Uma Delicia</h4>
-                        </div>
-                    </article>
-                </a>
+                {PLATOS.map(element => {
+                    return(
+                        <>
+                            <a href={"/details?id="+element.ID_PLATO}>
+                                <article className={styles.plato}>
+                                    <div className={styles.imgPlato} style={{backgroundImage: 'url('+element.foto_Url+')'}}>
+                                        <div className={styles.precioPlato}>${element.precio}</div>
+                                    </div>
+                                    <div className={styles.descPlato}>
+                                        <h3>{element.nombre_Plato}</h3>
+                                        <h4>{element.descripcion_Plato}</h4>
+                                    </div>
+                                </article>
+                            </a>
+                        </>
+                    )
+                })}
             </section>
         </main>
         <nav className={styles.menuinferior}>
-            <a className={styles.btnDir} href="/details"><button className={styles.btnDef} type="button">DETALLES</button></a>
+            <a className={styles.btnDir} href={"/details?id="+PLATO_SELECT}><button className={styles.btnDef} type="button">DETALLES</button></a>
             <button className={styles.focused} type="button">MENU</button>
             <a className={styles.btnDir} href="/reviews"><button className={styles.btnDef} type="button">RESEÑAS</button></a>
         </nav>

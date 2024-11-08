@@ -78,7 +78,7 @@ function Landing() {
         </nav>
       </header>
       <main>
-        <h2>OFERTAS</h2>
+        <h2>MENU</h2>
         <br/>
         <section className={styles.platos}>
           {PLATOS.map(e => {
