@@ -1,0 +1,215 @@
+:root{
+    --verde:rgb(19,209,146);
+    --gris:rgb(136,136,136);
+}
+.verde_txt{
+    color: var(--verde);
+}
+.gris_txt{
+    color: var(--gris);
+}
+
+nav.menuinferior{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    box-shadow: 0 13px 15px 15px rgba(0, 0, 0, 0.473);
+}
+
+.btnDir{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnDef{
+    height: 100%;
+    width: 100%;
+    flex: 0 0 33.33%;
+    border: 0;
+    background-color: transparent!important;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.btnDir:hover{
+    border-top: solid 3px rgb(92, 212, 172);
+}
+
+.focused{
+    height: 100%;
+    width: 100%;
+    flex: 0 0 33.33%;
+    border: 0;
+    background-color: transparent!important;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    background-color: gray;
+    border-top: solid 3px rgb(92, 212, 172);
+    font-weight: 700;
+}
+
+.headerMenu{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 10%;
+    background-color: white;
+    background-image: none;
+    box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.473);
+
+    & .contenedor{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+
+        & .close_menu{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            top: 35%;
+            left: 3%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & a{
+                color: black;
+            }
+        }
+        
+        & .titleResto{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & p{
+                font-size: 1.3em;
+            }
+        }
+    }
+
+    
+}
+
+.mainMenu{
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: calc(90% - 60px);
+    background-color: rgba(230, 230, 230, 0.822);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: top;
+    overflow-y: scroll;
+    
+    & .platoTituloMain{
+        width: 100%;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & p{
+            color: black;
+            font-size: 1.1em;
+        }
+    }
+
+    & .platos{
+        width: 100%;
+        height: calc(100% - 60px);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        align-items: flex-start;
+        margin-right: 5%;
+
+        & a{
+            width: 80%;
+            height: 120px;
+            border-radius: 15px;
+        }
+
+        & .plato{
+            width: 100%;
+            height: 120px;
+            display: flex;
+            border-radius: 15px;
+            box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.603);
+
+            & .imgPlato{
+                position: relative;
+                width: 30%;
+                height: 100%;
+                background-color: transparent;
+                background-image: url(../../assets/img/plato2.png);
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+
+                & .precioPlato{
+                    position: absolute;
+                    height: 30px;
+                    width: 60px;
+                    background-color: rgb(19,209,146);
+                    border-radius: 10px 0 10px 0;
+                    font-weight: bolder;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 15pt!important;
+                    box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.644);
+                    right: 0;
+                    bottom: 15%;
+                }
+            }
+
+            & .descPlato{
+                width: 70%;
+                height: 100%;
+                padding-top: 10px;
+                padding-left: 15px;
+                background-color: rgba(230, 230, 230, 0.822);
+                color: black;
+                display: flex;
+                flex-direction: column;
+                justify-content: top;
+                align-items: left;
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+        }
+
+        & .plato:hover{
+            transform: scale(1.05);
+        }
+    }
+}
+
+.mainMenu::-webkit-scrollbar{
+    display: none;
+}
+
+@media (orientation = landscape) {
+    .platos a{
+        flex-basis: calc(30% - 20px);
+        width: calc(30% - 20px);
+    }
+}
