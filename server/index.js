@@ -175,3 +175,38 @@ api.put('/actualizarPlato/:id', (request,res) => {
 
     })
 })
+
+
+// Registro (POST /register)
+api.post('/register', (req, res) => {
+    const { nombre_Usuario, apellido_Usuario, email, telefono, password } = req.body;
+    if (!nombre_Usuario || !apellido_Usuario || !email || !telefono || !password) {
+        return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+    }
+    db.query('SELECT * FROM restaurante__usuarios WHERE email = ?', [email], (err, results) => {
+        if (err) return res.status(500).json({ message: 'Error al consultar la base de datos' });
+        if (results.length > 0) return res.status(400).json({ message: 'El correo ya está registrado' });
+        db.query('INSERT INTO restaurante__usuarios (nombre_Usuario, apellido_Usuario, email, telefono, password) VALUES (?, ?, ?, ?, ?)',
+            [nombre_Usuario, apellido_Usuario, email, telefono, password], (err, results) => {
+                if (err) return res.status(500).json({ message: 'Error al registrar usuario' });
+                res.status(201).json({ message: 'Usuario registrado con éxito. Ahora puedes iniciar sesión' });
+            });
+    });
+});
+
+// Login (POST /login)
+api.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) return res.status(400).json({ message: 'Faltan datos de login' });
+    db.query('SELECT * FROM restaurante__usuarios WHERE email = ?', [email], (err, results) => {
+        if (err) return res.status(500).json({ message: 'Error al iniciar sesión' });
+        if (results.length === 0) return res.status(400).json({ message: 'Usuario no encontrado' });
+        const user = results[0];
+        if (user.password === password) {
+            return res.status(200).json({ message: 'Login exitoso' });
+        } else {
+            return res.status(400).json({ message: 'Contraseña incorrecta' });
+        }
+    });
+});
+
