@@ -1,0 +1,126 @@
+/* Reviews.module.css */
+:root {
+  --verde: rgb(19, 209, 146);
+  --gris: rgb(136, 136, 136);
+}
+
+.verde_txt {
+  color: var(--verde);
+}
+
+.gris_txt {
+  color: var(--gris);
+}
+
+/* Barra de navegación inferior */
+nav.menuinferior {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  display: flex;
+  box-shadow: 0 13px 15px 15px rgba(0, 0, 0, 0.473);
+}
+  
+.btnDir {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnDef {
+  height: 100%;
+  width: 100%;
+  flex: 0 0 33.33%;
+  border: 0;
+  background-color: transparent !important;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.btnDir:hover {
+  border-top: solid 3px rgb(92, 212, 172);
+}
+
+.focused {
+  height: 100%;
+  width: 100%;
+  flex: 0 0 33.33%;
+  border: 0;
+  background-color: transparent !important;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  background-color: gray;
+  border-top: solid 3px rgb(92, 212, 172);
+  font-weight: 700;
+}
+
+/* Sección de Reseñas */
+.reviewsSection {
+  padding: 20px;
+}
+
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.reviewCard {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stars {
+  display: flex;
+}
+
+.filledStar {
+  color: gold;
+}
+
+.emptyStar {
+  color: lightgray;
+}
+
+.comentario {
+  font-size: 14px;
+  color: #555;
+}
+
+.mainMenu {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: calc(90% - 60px);
+  background-color: rgba(230, 230, 230, 0.822);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: top;
+  overflow-y: scroll;
+}
+
+/* Eliminar la barra de desplazamiento */
+.mainMenu::-webkit-scrollbar {
+  display: none;
+}
+
+@media (orientation: landscape) {
+  .platos a {
+    flex-basis: calc(30% - 20px);
+    width: calc(30% - 20px);
+  }
+}

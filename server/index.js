@@ -194,19 +194,97 @@ api.post('/register', (req, res) => {
     });
 });
 
-// Login (POST /login)
+// // Login (POST /login)
+// api.post('/login', (req, res) => {
+//     const { email, password } = req.body;
+//     if (!email || !password) return res.status(400).json({ message: 'Faltan datos de login' });
+//     db.query('SELECT * FROM restaurante__usuarios WHERE email = ?', [email], (err, results) => {
+//         if (err) return res.status(500).json({ message: 'Error al iniciar sesión' });
+//         if (results.length === 0) return res.status(400).json({ message: 'Usuario no encontrado' });
+//         const user = results[0];
+//         if (user.password === password) {
+//             return res.status(200).json({ message: 'Login exitoso' });
+//         } else {
+//             return res.status(400).json({ message: 'Contraseña incorrecta' });
+//         }
+//     });
+// });
+
+// api.post('/register', (req, res) => {
+//     const { nombre_Usuario, apellido_Usuario, foto_Url_Usuario, telefono, email, password } = req.body;
+//     if (!nombre_Usuario || !apellido_Usuario || !telefono || !email || !password) {
+//         return res.status(400).json({ message: 'Todos los campos son requeridos' });
+//     }
+//     db.query(
+//         'INSERT INTO restaurante__usuarios (nombre_Usuario, apellido_Usuario, foto_Url_Usuario, telefono, email, password) VALUES (?, ?, ?, ?, ?, ?)',
+//         [nombre_Usuario, apellido_Usuario, foto_Url_Usuario, telefono, email, password],
+//         (err, results) => {
+//             if (err) {
+//                 res.status(500).json({ message: err.message });
+//             } else {
+//                 res.status(201).json({ message: 'Usuario registrado' });
+//             }
+//         }
+//     );
+// });
+
+
 api.post('/login', (req, res) => {
     const { email, password } = req.body;
-    if (!email || !password) return res.status(400).json({ message: 'Faltan datos de login' });
-    db.query('SELECT * FROM restaurante__usuarios WHERE email = ?', [email], (err, results) => {
-        if (err) return res.status(500).json({ message: 'Error al iniciar sesión' });
-        if (results.length === 0) return res.status(400).json({ message: 'Usuario no encontrado' });
-        const user = results[0];
-        if (user.password === password) {
-            return res.status(200).json({ message: 'Login exitoso' });
-        } else {
-            return res.status(400).json({ message: 'Contraseña incorrecta' });
-        }
-    });
+
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email y contraseña son requeridos' });
+    }
+
+    db.query(
+        'SELECT * FROM restaurante__usuarios WHERE email = ? AND password = ?',
+        [email, password],
+        (err, results) => {
+            if (err) {
+                res.status(500).json({ message: err.message });
+                return;
+            }
+
+            if (results.length > 0) {
+                
+                res.status(200).json({
+                    message: 'Login exitoso',
+                    user: results[0] 
+                });
+            } else {
+                
+                res.status(401).json({ message: 'Credenciales incorrectas' });
+            }
+        }
+    );
 });
 
+api.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email y contraseña son requeridos' });
+    }
+
+    db.query(
+        'SELECT * FROM restaurante__usuarios WHERE email = ? AND password = ?',
+        [email, password],
+        (err, results) => {
+            if (err) {
+                res.status(500).json({ message: err.message });
+                return;
+            }
+
+            if (results.length > 0) {
+                
+                res.status(200).json({
+                    message: 'Login exitoso',
+                    user: results[0] 
+                });
+            } else {
+                
+                res.status(401).json({ message: 'Credenciales incorrectas' });
+            }
+        }
+    );
+});
