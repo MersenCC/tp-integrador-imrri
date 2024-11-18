@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import styles from './Carrito.module.css'; // Importa el archivo de estilos
+import styles from './Carrito.module.css';
 
-// Productos de ejemplo para el carrito (puedes integrar esto con un backend o context API)
 const productosEjemplo = [
   { id: 1, nombre: 'Pizza Margherita', precio: 8.5, cantidad: 1, fotoUrl: 'https://via.placeholder.com/150' },
   { id: 2, nombre: 'Pasta Alfredo', precio: 10.0, cantidad: 2, fotoUrl: 'https://via.placeholder.com/150' },
@@ -11,20 +10,17 @@ const productosEjemplo = [
 const Carrito = () => {
   const [productos, setProductos] = useState(productosEjemplo);
 
-  // Calcular el total del carrito
   const calcularTotal = () => {
     return productos.reduce((total, producto) => total + producto.precio * producto.cantidad, 0).toFixed(2);
   };
 
-  // Eliminar un producto del carrito
   const eliminarProducto = (id) => {
     const nuevosProductos = productos.filter(producto => producto.id !== id);
     setProductos(nuevosProductos);
   };
 
-  // Actualizar la cantidad de un producto
   const actualizarCantidad = (id, nuevaCantidad) => {
-    if (nuevaCantidad <= 0) return; // Prevenir cantidades negativas o 0
+    if (nuevaCantidad <= 0) return;
     const nuevosProductos = productos.map(producto =>
       producto.id === id ? { ...producto, cantidad: nuevaCantidad } : producto
     );

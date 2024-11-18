@@ -58,10 +58,10 @@ function Landing() {
           </div>
           <div className={styles.buscador}>
             <div className={styles.icono}>
-              <i className="material-icons-outlined">room</i>
+              <i className="material-symbols-outlined">room</i>
             </div>
             <input type="search" placeholder="Ingrese algo"/>
-            <input className="material-icons-outlined" type="submit" value="search"/>
+            <input className="material-symbols-outlined" type="submit" value="search"/>
           </div>
         </section>
         <nav className={styles.categorias}>
@@ -69,7 +69,7 @@ function Landing() {
             return(
               <>
                 <a href="#" className={styles.btnCat}>
-                  <i className="material-icons-outlined">ramen_dining</i>
+                  <i className="material-symbols-outlined">{ele.foto}</i>
                   {ele.nombre_Categoria}
                 </a>
               </>
@@ -85,9 +85,9 @@ function Landing() {
             let estrellas = []
             for(let x = 0; x < 5; x++){
               if(x < e.promedioCalificacion){
-                estrellas.push(<i className="material-icons-outlined">star</i>)
+                estrellas.push(<i className="material-symbols-outlined">star</i>)
               } else {
-                estrellas.push(<i className="material-icons-outlined">star_border</i>)
+                estrellas.push(<i className="material-symbols-outlined">star_border</i>)
               }
             }
             return(

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './Reviews.module.css'; // Importa el CSS con las clases que me pasaste
+import styles from './Reviews.module.css';
 
 const obtenerReseñas = async () => {
   try {
@@ -14,10 +14,12 @@ const obtenerReseñas = async () => {
   }
 };
 
+const URL = window.location.href
+const PLATO_SELECT = parseInt(URL.slice(-1))
+
 const Reviews = () => {
   const [reseñas, setReseñas] = useState([]);
 
-  // Cargar las reseñas al montar el componente
   useEffect(() => {
     const cargarReseñas = async () => {
       const data = await obtenerReseñas();
@@ -28,7 +30,6 @@ const Reviews = () => {
 
   return (
     <div className={styles.container}>
-      {/* Sección de Reseñas */}
       <section className={styles.reviewsSection}>
         <h2>Reseñas de Clientes</h2>
         <div className={styles.reviewsList}>
@@ -42,7 +43,7 @@ const Reviews = () => {
                   <div className={styles.stars}>
                     {Array.from({ length: 5 }, (_, index) => (
                       <span key={index} className={index < reseña.puntuacion ? styles.filledStar : styles.emptyStar}>
-                        &#9733; {/* Estrella llena o vacía */}
+                        &#9733;
                       </span>
                     ))}
                   </div>
@@ -54,12 +55,11 @@ const Reviews = () => {
         </div>
       </section>
 
-      {/* Barra de navegación inferior */}
       <nav className={styles.menuinferior}>
-        <a className={styles.btnDir} href={"/details?id=1"}>
+        <a className={styles.btnDir} href={"/details?id="+PLATO_SELECT}>
           <button className={styles.btnDef} type="button">DETALLES</button>
         </a>
-        <a className={styles.btnDir} href={"/menu?id=1"}>
+        <a className={styles.btnDir} href={"/menu?id="+PLATO_SELECT}>
           <button className={styles.btnDef} type="button">MENU</button>
         </a>
         <button className={styles.focused} type="button">RESEÑAS</button>
