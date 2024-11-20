@@ -25,7 +25,7 @@ function Details() {
                         return (
                             <>
                                 <section className={styles.linkResto}>
-                                    <a href="/"><div className={styles.close}><i className="material-symbols-outlined">close</i></div></a>
+                                    <a href="/landing"><div className={styles.close}><i className="material-symbols-outlined">close</i></div></a>
                                     <div className={styles.picResto} style={{backgroundImage: 'url('+element.foto_Url+')'}}></div>
                                     <div className={styles.nameResto}>
                                         <h1>{element.nombre_Plato}</h1>
@@ -50,7 +50,6 @@ function Details() {
             </main>
             <nav className={styles.menuinferior}>
                 <button className={styles.focused} type="button">DETALLES</button>
-                <a className={styles.btnDir} href={"/menu?id="+PLATO_SELECT}><button className={styles.btnDef} type="button">MENU</button></a>
                 <a className={styles.btnDir} href={"/reviews?id="+PLATO_SELECT}><button className={styles.btnDef} type="button">RESEÑAS</button></a>
             </nav>
         </>

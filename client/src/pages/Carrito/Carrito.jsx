@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Carrito.module.css';
 
-const productosEjemplo = [
-  { id: 1, nombre: 'Pizza Margherita', precio: 8.5, cantidad: 1, fotoUrl: 'https://via.placeholder.com/150' },
-  { id: 2, nombre: 'Pasta Alfredo', precio: 10.0, cantidad: 2, fotoUrl: 'https://via.placeholder.com/150' },
-  { id: 3, nombre: 'Ensalada Cesar', precio: 6.5, cantidad: 1, fotoUrl: 'https://via.placeholder.com/150' },
-];
-
 const Carrito = () => {
-  const [productos, setProductos] = useState(productosEjemplo);
+  const [productos, setProductos] = useState([]);
+
+ 
+  useEffect(() => {
+    const carritoGuardado = JSON.parse(localStorage.getItem('carrito')) || [];
+    setProductos(carritoGuardado);
+  }, []);
 
   const calcularTotal = () => {
     return productos.reduce((total, producto) => total + producto.precio * producto.cantidad, 0).toFixed(2);
@@ -17,6 +17,7 @@ const Carrito = () => {
   const eliminarProducto = (id) => {
     const nuevosProductos = productos.filter(producto => producto.id !== id);
     setProductos(nuevosProductos);
+    localStorage.setItem('carrito', JSON.stringify(nuevosProductos)); 
   };
 
   const actualizarCantidad = (id, nuevaCantidad) => {
@@ -25,6 +26,16 @@ const Carrito = () => {
       producto.id === id ? { ...producto, cantidad: nuevaCantidad } : producto
     );
     setProductos(nuevosProductos);
+    localStorage.setItem('carrito', JSON.stringify(nuevosProductos)); 
+  };
+
+  const seguirComprando = () => {
+    window.location.href = '/landing'; 
+  };
+
+  const procederPago = () => {
+    
+    console.log('Proceder al pago');
   };
 
   return (
@@ -61,8 +72,8 @@ const Carrito = () => {
       )}
 
       <div className={styles.botones}>
-        <button className={styles.btnComprar}>Seguir Comprando</button>
-        <button className={styles.btnPagar}>Proceder al Pago</button>
+        <button className={styles.btnComprar} onClick={seguirComprando}>Seguir Comprando</button>
+        <button className={styles.btnPagar} onClick={procederPago}>Proceder al Pago</button>
       </div>
     </div>
   );

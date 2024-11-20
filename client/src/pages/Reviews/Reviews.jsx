@@ -59,9 +59,6 @@ const Reviews = () => {
         <a className={styles.btnDir} href={"/details?id="+PLATO_SELECT}>
           <button className={styles.btnDef} type="button">DETALLES</button>
         </a>
-        <a className={styles.btnDir} href={"/menu?id="+PLATO_SELECT}>
-          <button className={styles.btnDef} type="button">MENU</button>
-        </a>
         <button className={styles.focused} type="button">RESEÑAS</button>
       </nav>
     </div>

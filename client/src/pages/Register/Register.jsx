@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Register.module.css';
 
 function Register() {
@@ -18,8 +19,34 @@ function Register() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const navigate = useNavigate(); 
+
+    const response = await fetch('http://localhost:3001/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nombre_Usuario: formData.nombre_Usuario,
+        apellido_Usuario: formData.apellido_Usuario,
+        foto_Url_Usuario: formData.foto_Url_Usuario,
+        telefono: formData.telefono,
+        email: formData.email,
+        password: formData.password
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert('Registro Exitoso');
+      navigate('/login');
+    } else {
+      setError(data.message || 'Credenciales incorrectas');
+    }
   };
 
   return (
